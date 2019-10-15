@@ -1,0 +1,109 @@
+/* reset rules : ) */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 200vh;
+  font-family: Arial;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: dodgerblue;
+}
+
+#nav_main {
+  height: 60px;
+  background: black;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  color: white;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+#nav_main .link {
+  margin-left: 7px;
+}
+
+#my_first_page {
+  background: blanchedalmond;
+  position: relative;
+  top: 60px;
+}
+
+.inline-block-wrap {
+  font-size: 0;
+}
+
+.block {
+  background: dodgerblue;
+  height: 100px;
+  border: 2px solid;
+  margin-bottom: 10px;
+  width: 33.333%;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.block.inline {
+  display: inline-block;
+}
+
+.box-sizing-example {
+  background: palegreen;
+  height: 200px;
+  width: 200px;
+  border: 5px solid;
+  padding: 10px;
+}
+
+.wrap-flex {
+  background: fuchsia;
+  display: flex;
+}
+
+.wrap-flex .flex-element {
+  background: gold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 120px;
+  margin-right: 10px;
+}
+
+.wrap-flex .flex-element:last-of-type {
+  margin-right: 0;
+}
+/* below : a media query rule that will only apply top device-width that a less than 450px */
+@media (max-width: 450px) {
+  .wrap-flex {
+    flex-direction: column;
+  }
+
+  .wrap-flex .flex-element {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+
+#get_my_height {
+
+}
+
+#height_target {
+ background: red;
+ color: white;
+ height: 100%;
+}
