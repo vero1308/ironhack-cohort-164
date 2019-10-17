@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+table,
+td,
+th {
+  border: 1px solid;
+}
+
+td,
+th {
+  padding: 7px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #31c2fe;
+}
+
+.list {
+  line-height: 1.9rem;
+}
+
+.list .item {
+  padding-left: 10px;
+}
+
+.has-border-bottom {
+  padding-bottom: 20px;
+  border-bottom: 1px solid;
+}
+
+.row,
+.col {
+  display: flex;
+}
+
+.col {
+  flex-direction: columns;
+}
+
+.row.space-between {
+  justify-content: space-between;
+}
