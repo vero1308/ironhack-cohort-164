@@ -7,24 +7,33 @@ p {
 } */
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .intro-text {
-    color: blue;
+  color: blue;
 }
 
 .intro-text.important {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #header_main {
-    background: black;
-    color: white;
-    padding: 10px 20px 30px 20px;
-    /* top right bottom left */
-    padding: 10px 20px 30px;
-    padding: 10px 20px;
-    padding: 10px;
+  background: black;
+  color: white;
+  padding: 10px 20px 30px 20px;
+  /* top right bottom left */
+  padding: 10px 20px 30px;
+  padding: 10px 20px;
+  padding: 10px;
+}
+
+#sidebar_main {
+  background: silver;
+}
+
+#sidebar_main:hover {
+  background: pink;
+  cursor: pointer;
 }
