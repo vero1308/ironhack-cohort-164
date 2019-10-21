@@ -1,0 +1,18 @@
+/* 4 in a row ! who wants to try ? */
+/* what's selected ? */
+.users,
+.item {
+  color: blue;
+}
+
+.users .item {
+  color: blue;
+}
+
+.users > .item {
+  color: blue;
+}
+
+.user.item {
+  color: blue;
+}
