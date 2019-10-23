@@ -6,34 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>DOM review I</title>
     <script type="module" src="js/rangeColor.js"></script>
-    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
   </head>
   <body>
     <nav id="nav_main">
       <a href="/" class="link">home</a>
-      <a href="/about.html" class="link">about</a>
-      <a href="/contact.html" class="link">contact</a>
+      <a href="/artists.html" class="link">artists</a>
     </nav>
-    <main>
-      <div class="range-color">
-        <p class="value">50</p>
-        <input class="range" type="range" min="0" max="100" step="10" />
-      </div>
-      <div class="range-color">
-        <p class="value">50</p>
-        <input class="range" type="range" min="0" max="100" step="10" />
-      </div>
-      <div class="range-color">
-        <p class="value">50</p>
-        <input class="range" type="range" min="0" max="100" step="10" />
-      </div>
-      <div class="range-color">
-        <p class="value">50</p>
-        <input class="range" type="range" min="0" max="100" step="10" />
-      </div>
-      <div class="range-color">
-        <p class="value">50</p>
-        <input class="range" type="range" min="0" max="100" step="10" />
+    <main id="main_content">
+      <header id="header_content">
+        <h1 class="title">
+          <span>Hello Ironhackers</span>
+          <i class="fas fa-code"></i>
+        </h1>
+        <p class="text-block">
+          Use the provided code as a base.<br />
+          Add a feature displaying the sum of all the ranges on page !
+        </p>
+      </header>
+      <div id="ranges">
+        <div class="range-color">
+          <p class="value">50</p>
+          <input class="range" type="range" min="0" max="100" step="10" />
+        </div>
+        <div class="range-color">
+          <p class="value">50</p>
+          <input class="range" type="range" min="0" max="100" step="10" />
+        </div>
+        <div class="range-color">
+          <p class="value">50</p>
+          <input class="range" type="range" min="0" max="100" step="10" />
+        </div>
+        <div class="range-color">
+          <p class="value">50</p>
+          <input class="range" type="range" min="0" max="100" step="10" />
+        </div>
+        <div class="range-color">
+          <p class="value">50</p>
+          <input class="range" type="range" min="0" max="100" step="10" />
+        </div>
+        <div class="range-color">
+          <p class="value">50</p>
+          <input class="range" type="range" min="0" max="100" step="10" />
+        </div>
       </div>
     </main>
   </body>
