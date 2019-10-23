@@ -5,7 +5,9 @@ const musicArtists = [
   { name: "Bad Brains", rate: 5 },
   { name: "Kendrick Lamar", rate: 5 },
   { name: "Duke Ellington", rate: 5 },
-  { name: "Peter Tosh", rate: 1 }
+  { name: "Peter Tosh", rate: 2 },
+  { name: "Weezer", rate: 3 },
+  { name: "Sepultura", rate: 4 },
 ];
 
 const btn = document.getElementById("btn_display");
@@ -14,7 +16,7 @@ const artistsContainer = document.getElementById("artists");
 function getStarsTemplate(count) {
   var tpl = '<div class="stars">';
   while (count > 0) {
-    tpl += '<i class="fas fa-star"></i>';
+    tpl += '<i class="star fas fa-star"></i>';
     count--;
   }
   tpl += "</div>";
@@ -22,6 +24,7 @@ function getStarsTemplate(count) {
 }
 
 function displayArtists() {
+  artistsContainer.innerHTML = ""; // reset to avoid stacking...
   musicArtists.forEach(artist => {
     artistsContainer.innerHTML += `<div class="artist">${
       artist.name
