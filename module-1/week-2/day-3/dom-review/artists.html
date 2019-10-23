@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DOM Review I - About</title>
+    <link rel="stylesheet" href="style/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <script type="module" src="js/displayObjects.js"></script>
+  </head>
+  <body>
+    <nav id="nav_main">
+      <a href="/" class="link">home</a>
+      <a href="/artists.html" class="link">artists</a>
+    </nav>
+    <main id="main_content">
+      <header id="header_content">
+        <h1 class="title">
+          <span>Artists</span>
+          <i class="fas fa-headphones-alt"></i>
+        </h1>
+        <p class="text-block">
+          Create an array of JS objects (chose between peoples, cars, animals,
+          fruits...).<br />
+          Use a loop and DOM methods to display objects infos on the page.<br />
+          The display should only occurs when a button is clicked !!!<br /><br />
+          <b>Hint >></b><br />
+          innerHTML OR createElement/appendChild
+        </p>
+        <button id="btn_display" class="btn">display artists !</button>
+      </header>
+
+      <div id="artists"></div>
+    </main>
+  </body>
+</html>
