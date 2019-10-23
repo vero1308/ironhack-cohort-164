@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .danger {
+    color: firebrick;
+  }
+  .warning {
+    color: darkorange;
+  }
+  .success {
+    color: green;
+  }
+  .range-color {
+    border: 1px solid;
+    border-radius: 0.4rem;
+    font-family: Arial;
+    padding: 10px;
+    display: flex;
+    max-width: 180px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .range-color .value {
+      font-weight: bolder;
+      margin-bottom: 10px;
+  }
