@@ -3,6 +3,11 @@ class Cohort {
     this.number = number;
     this.startDate = start;
     this.endDate = end;
+    this.students = [];
+  }
+
+  addStudent(s) {
+    this.students.push(s);
   }
 }
 
@@ -10,7 +15,6 @@ class Student {
   constructor(name, age, cohort) {
     this.name = name;
     this.age = age;
-    this.cohort = cohort;
   }
 
   presentYourself() {
@@ -18,9 +22,12 @@ class Student {
   }
 }
 
+// a cohort
 const cohort164 = new Cohort(164, "10/14/19", "12/20/19");
 console.log(cohort164);
-const student1 = new Student("Amine", 23, cohort164);
-console.log(student1);
-const res = student1.presentYourself();
-console.log(res);
+cohort164.addStudent(new Student("Amine", 23));
+console.log(cohort164);
+
+// a single student....
+const studentX = new Student("Noémie", null);
+console.log(studentX.presentYourself());
