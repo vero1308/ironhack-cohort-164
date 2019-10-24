@@ -45,7 +45,7 @@ a {
 }
 .text-block {
   margin-bottom: 20px;
-  background: #d6336c;
+  background: #2ecac4;
   color: #f8f9fa;
   padding: 20px;
   border-radius: .35rem;
@@ -67,7 +67,7 @@ a {
 }
 .link:hover,
 .btn:hover {
-  color: #d6336c;
+  color: #2ecac4;
 }
 .danger {
   color: firebrick;
