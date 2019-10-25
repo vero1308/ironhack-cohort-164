@@ -1,0 +1,114 @@
+@font-face {
+  font-family: "MassiveRetaliation";
+  src: url("./../fonts/massive_retaliation/massive_retaliation.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+#intro_overlay {
+  background: url(./../images/evil-trump.webp);
+  background-origin: content-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transition: opacity 0.7s linear;
+}
+
+.is-hidden {
+  opacity: 0;
+}
+
+.btn {
+  font-family: MassiveRetaliation;
+  cursor: pointer;
+  transition: opacity 1s linear;
+}
+
+.btn.start-game {
+  border: none;
+  outline: none;
+  position: absolute;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: calc(50vw - 75px);
+  top: calc(50vh - 40px);
+  font-size: 3rem;
+  background: transparent;
+  color: #d19d01;
+  z-index: 999;
+  text-shadow: 1px 1px 1px #111111;
+  background: #111111a8;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.9rem;
+  border-bottom-right-radius: 0.6rem;
+  border-bottom-left-radius: 0.6rem;
+  padding: 6px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+#arrows {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(3, 40px);
+  transition: opacity 0.7s linear;
+}
+
+#arrows .icon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#arrows .icon:hover {
+  color: dodgerblue;
+}
+
+#arrow_up {
+  grid-column: 2 / 2;
+  grid-row: 1 / 1;
+}
+#arrow_left {
+  grid-column: 1 / 1;
+  grid-row: 2 / 2;
+}
+#arrow_right {
+  grid-column: 3 / 3;
+  grid-row: 2 / 2;
+}
+#arrow_down {
+  grid-column: 2 / 2;
+  grid-row: 3 / 3;
+}
