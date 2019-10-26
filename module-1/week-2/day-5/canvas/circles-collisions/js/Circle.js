@@ -1,6 +1,6 @@
 import utils from "./utils.js";
 
-const lineWidth = 10;
+const lineWidth = 5;
 
 
 export default class Circle {
