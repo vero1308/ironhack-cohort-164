@@ -1,9 +1,9 @@
 import utils from "./utils.js";
 import Circle from "./Circle.js";
 
-const canvas = document.querySelector("canvas");
+const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
-const circleLimit = 200;
+const circleLimit = 40;
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
@@ -70,10 +70,9 @@ function init() {
 
   window.setInterval(() => {
     if (circles.length < circleLimit) addCircle();
-  }, 100);
+  }, 2000);
 }
 
-// Animation Loop
 function animate() {
   requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
