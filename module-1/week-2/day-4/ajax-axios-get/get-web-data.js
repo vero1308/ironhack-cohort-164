@@ -6,7 +6,7 @@ const url =
 const body = document.querySelector("body");
 
 function displayTrees(trees) {
-  // console.log(trees); // all the nice trees in Paris
+  console.log(trees); // all the nice trees in Paris
   body.innerHTML = "<ul>";
   // .... loop through the trees
   trees.forEach(tree => {
