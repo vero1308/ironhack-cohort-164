@@ -1,19 +1,83 @@
 #board {
-    cursor: none;
+  cursor: none;
+  position: relative;
+  top: 0;
+  z-index: 0;
+}
+
+#home {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: #000000bd;
+  transform: translateX(-100vw);
+  transition: transform 0.5s linear;
+}
+
+#home.is-active {
+  transform: translateX(0);
 }
 
 #container_game {
-    position: relative;
+  position: relative;
+}
+
+#metrics {
+  position: relative;
+  z-index: 9;
+}
+
+#chronometer,
+#life {
+  position: fixed;
+  height: 4px;
+  left: 0;
+  right: 0;
+}
+
+#score {
+  position: absolute;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  background: black;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
 }
 
 #chronometer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
+  background: black;
+  top: 0;
 }
-#chronometer #update {
-    height: 100%;
-    background: purple;
+
+#life {
+  background: green;
+  top: 4px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#chronometer .update,
+#life .update {
+  height: 100%;
+}
+
+#chronometer .update {
+  width: 0;
+  background: white;
+}
+
+#life .update {
+  width: 0%;
+  background: red;
 }

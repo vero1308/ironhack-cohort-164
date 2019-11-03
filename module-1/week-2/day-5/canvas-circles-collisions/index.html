@@ -3,15 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <title>Canvas - Circles Collisions</title>
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/board.css">
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/board.css" />
     <script type="module" src="js/Game.js"></script>
   </head>
   <body id="container_game">
-    <div id="chronometer">
-      <div id="update"></div>
+    <div id="home">
+      <div id="menu"></div>
     </div>
-    <div id="life"></div>
+    <div id="metrics">
+      <div id="score">0</div>
+      <div id="chronometer">
+        <div class="update"></div>
+      </div>
+      <div id="life">
+        <div class="update"></div>
+      </div>
+    </div>
     <canvas id="board"></canvas>
   </body>
 </html>

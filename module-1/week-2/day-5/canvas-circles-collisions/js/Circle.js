@@ -1,7 +1,7 @@
 import utils from "./_utils.js";
 
 const lineWidth = 5;
-const minVelocity = 3;
+const minVelocity = 2;
 const maxVelocity = 4;
 
 export default class Circle {
@@ -10,6 +10,7 @@ export default class Circle {
     this.isFull = Boolean(isFull);
     this.x = x;
     this.y = y;
+    this.life = 100;
     this.radius = radius;
     this.color = color;
     this.originalColor = color;
@@ -21,9 +22,37 @@ export default class Circle {
     this.isCollide = false;
   }
 
+  rotate(x, y, width, height, deg) {
+    this.rotation.deg += deg;
+    console.log(this)
+    // Store the current context state (i.e. rotation, translation etc..)
+    this.ctx.save();
+
+    //Convert degrees to radian
+    var rad = (this.rotation.deg * Math.PI) / 180;
+
+    //Set the origin to the center of the image
+    this.ctx.translate(x + width / 2, y + height / 2);
+
+    //Rotate the canvas around the origin
+    this.ctx.rotate(rad);
+
+    //draw the image
+    // this.ctx.drawImage(img, (width / 2) * -1, (height / 2) * -1, width, height);
+
+    // Restore canvas state as saved from above
+    this.ctx.restore();
+  }
+
   draw() {
     const style = this.isFull ? "fillStyle" : "strokeStyle";
     const fill = this.isFull ? "fill" : "stroke";
+
+    if (this.rotation && this.rotation.isActive === true) {
+      console.log("is rotation");
+      // this.rotate(this.x, this.w, this.radius, this.radius, 1);
+    }
+
     this.ctx.beginPath();
     this.ctx.lineWidth = lineWidth;
     this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -42,6 +71,7 @@ export default class Circle {
         0
       ) {
         this.isCollide = true;
+        if (circles[i].isPlayer) circles[i].setLife(-1);
         console.log("KABOOM : collision");
         utils.resolveCollision(this, circles[i]);
       } else {
@@ -51,7 +81,6 @@ export default class Circle {
   }
 
   handleBorderCollision() {
-    // prevent circles to go out the screen
     if (
       this.x + lineWidth - this.radius <= 0 ||
       this.x + lineWidth + this.radius >= innerWidth
@@ -72,7 +101,7 @@ export default class Circle {
     if (!circles) this.draw();
     this.handleBorderCollision();
     this.handleCollision(circles);
-   
+
     this.draw();
   }
 }

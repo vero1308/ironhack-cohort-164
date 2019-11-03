@@ -1,6 +1,6 @@
 export default class Chronometer {
     constructor() {
-      this.currentTime = 0;
+      this.currentTime = 55;
       this.currentMillis = 0;
       this.intervalId = null;
     }
@@ -37,6 +37,7 @@ export default class Chronometer {
       this.stopClick();
       this.currentTime = 0;
       this.currentMillis = 0;
+      return this.currentTime;
     }
   
     splitClick = () => `${this.twoDigitsNumber(this.getMinutes())}:

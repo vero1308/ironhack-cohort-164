@@ -1,8 +1,8 @@
 import Chronometer from "./Chronometer.js";
 import World from "./World.js";
 import Player from "./Player.js";
-import {ctx, updateChronoElement} from "./_dom.js";
-import utils from "./_utils.js";
+import { ctx, updateChronoElement } from "./_dom.js";
+import "./_events.js";
 
 export default class Game {
   constructor() {
@@ -10,30 +10,51 @@ export default class Game {
     this.world = new World();
     this.players = [];
     this.roundTimeLimit = 60;
-    console.log(this);
+    // console.log(this);
   }
 
   start() {
-    const playerOne = new Player(
-      ctx,
-      (innerWidth - 30) / 2,
-      (innerHeight - 30) / 2,
-      10,
-      "black",
-      true,
-      "foo",
-      0
+    this.addPlayer(
+      new Player(
+        ctx,
+        (innerWidth - 30) / 2,
+        (innerHeight - 30) / 2,
+        10,
+        "black",
+        true,
+        "foo",
+        0
+      )
     );
-    this.world.init(playerOne);
 
+    this.world.init(this.players);
+
+    let blocked = false;
     this.chronometer.startClick(() => {
-        if (this.chronometer.getSeconds() === this.roundTimeLimit) this.chronometer.resetClick();
-        updateChronoElement(this.chronometer.getSeconds(), this.roundTimeLimit);
-    })
+      let secs = this.chronometer.getSeconds();
+
+      if (secs === this.roundTimeLimit - 1 && !blocked) {
+          blocked = true;
+          setTimeout(() => blocked = false, 1000)
+        this.updatePlayersScore();
+      }
+
+      updateChronoElement(secs, this.roundTimeLimit);
+
+      //   console.log(secs);
+    });
   }
 
-  addPlayer() {
-    this.players.push("foo");
+  updatePlayersScore() {
+    console.log("players length => ", this.players.length);
+    this.players.forEach(p => {
+      //   console.log(p);
+      p.setScore(1);
+    });
+  }
+
+  addPlayer(p) {
+    this.players.push(p);
   }
 }
 
