@@ -4,11 +4,9 @@
 
 *.DS_Store
 
-module-1/labs-soluce-proposals/lab-dom-ironhack-cart
-module-1/labs-soluce-proposals/lab-javascript-advanced-algorithms
-module-1/labs-soluce-proposals/lab-javascript-all-times-movies
-module-1/labs-soluce-proposals/lab-javascript-chronometer
-module-1/labs-soluce-proposals/lab-javascript-memory-game
 
+module-1/labs-soluce-proposals/lab-javascript-all-times-movies
+
+module-1/week-2/day-5/canvas-circles-collisions/
 module-1/week-2/day-5/collide-particles/
 module-1/week-2/day-5/canvas/canvas-proto
