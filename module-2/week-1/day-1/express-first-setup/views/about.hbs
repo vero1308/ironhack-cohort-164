@@ -1,1 +1,6 @@
-about
+<h1>{{title}}</h1>
+<ul>
+    {{#each students}}
+    <li>{{@index}} {{ this }}</li>
+    {{/each}}
+</ul>

@@ -1,1 +1,18 @@
-signup
+<h1>{{title}}</h1>
+<ul>
+    {{#each students}}
+    <li>
+        {{#each this}}
+            <span>{{ this }}</span>
+        {{/each}}
+    </li>
+    {{/each}}
+</ul>
+
+<hr>
+
+<ul>
+    {{#each students}}
+    <li> {{ this.name }} || {{this.cohort}} </li>
+    {{/each}}
+</ul>
