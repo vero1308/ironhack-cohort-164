@@ -1,0 +1,16 @@
+{
+  "name": "express-first-setup",
+  "version": "1.0.0",
+  "description": "some express base snippets",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon ./server.js -e js,hbs"
+  },
+  "author": "guillaume@owlab",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.0.6"
+  }
+}

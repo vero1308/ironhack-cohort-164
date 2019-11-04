@@ -1,0 +1,11 @@
+TODAY's goal
+
+understand better what is node
+
+know the client/server app architecture basic concept
+
+know about the MVC pattern (more coming this week)
+
+install and config a small web server with node+express+hbs
+
+code a simple page using these new tools

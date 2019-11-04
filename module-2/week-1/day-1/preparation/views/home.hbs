@@ -1,0 +1,39 @@
+<h1 class="title">Hello express + HBS</h1>
+<p>
+    {{ name }} {{ bootcamp }}
+</p>
+
+<hr>
+
+{{{ markup }}}
+
+<hr>
+
+{{#if isTruthy}}
+<h2>If truthy ... This tag will be displayed !!</h2>
+{{else}}
+<h2>Else ... this other tag will be displayed !!</h2>
+{{/if}}
+
+<hr>
+
+{{#if isActive}}
+<p>YAY !!!</p>
+{{else}}
+<p>NAY !!!</p>
+{{/if}}
+
+<hr>
+
+{{#unless address}}
+<h3>WARNING: We can't find the address!</h3>
+{{/unless}}
+
+<hr>
+
+{{#if address}}
+<h3>{{address}}</h3>
+{{/if}}
+
+<hr>
+
