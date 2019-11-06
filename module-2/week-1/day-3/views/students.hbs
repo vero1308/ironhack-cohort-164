@@ -1,0 +1,12 @@
+<ul id="students" class="list">
+    {{#each students}}
+    <li>
+        <span>{{this.lastname}}</span>
+        <span>|</span>
+        <span>{{this.email}}</span>
+        <form style="display: inline" method="post" action="/delete-student/{{this._id}}">
+            <button class="btn">x</button>
+        </form>
+    </li>
+    {{/each}}
+</ul>
