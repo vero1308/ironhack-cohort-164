@@ -1,0 +1,8 @@
+.fa-heart {
+  transition: all 0.5s linear;
+}
+
+.fa-heart.is-active {
+  color: red;
+  font-size: 2rem;
+}

@@ -1,12 +1,3 @@
 body {
-    background: dodgerblue;
     font-family: Arial;
-}
-
-.fa-heart {
-    transition: all .5s linear;
-}
-.fa-heart.is-active {
-    color: yellow;
-    font-size: 2rem;
 }
