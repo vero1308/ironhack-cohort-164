@@ -23,23 +23,25 @@ router.get("/all-students", (req, res) => {
 
 router.post("/signup", (req, res) => {
   // console.log(req.body); ???
-  // res.send("@ todo => student create")
   studentModel
     .create(req.body)
     .then(dbResult => {
+      req.flash("success", "user successfully created");
       res.redirect("all-students");
     })
     .catch(dbError => {
       console.log(dbError);
+      req.flash("error", "an error occured while creating user");
       res.redirect("signup");
     });
 });
 
-// req.flash("success", "user successfully created");
-// req.flash("error", "an error occured while creating user");
 
 router.post("/delete-student/:id", (req, res) => {
+  // :id is a variable (wildcard)
   console.log(req.params);
+  // req.params exposes the variable parts of this route
+  // return res.send("@todo erase student");
 
   studentModel
     .findByIdAndDelete(req.params.id)
@@ -49,6 +51,12 @@ router.post("/delete-student/:id", (req, res) => {
     .catch(dbError => {
       console.error(dbError);
     });
+
+  // studentModel.findByIdAndDelete(req.params.id, function(dbError, dbResult) {
+  //   if (dbError) res.redirect("/error-page");
+  //   else res.redirect("/all-students");
+  // });
+  
 });
 
 module.exports = router;

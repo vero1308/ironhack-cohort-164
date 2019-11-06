@@ -9,13 +9,7 @@ const studentSchema = new Schema({
     // cohort: Number,
     email: String,
     password: String,
-    firstname: String,
-    lastname: {
-        type: String,
-        default: "foo",
-        required: true
-    }
-    // lastname: String
+    firstname: String
 });
 
 const studentModel = mongoose.model("Student", studentSchema); 

@@ -5,8 +5,8 @@ require("./config/mongo.js"); // database connection
 const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
-// const flash = require("connect-flash");
-// const session = require("express-session");
+const flash = require("connect-flash");
+const session = require("express-session");
 // ------------------------------------------
 // SERVER CONFIG
 // ------------------------------------------
@@ -29,22 +29,23 @@ server.set("view engine", "hbs"); // in this case hbs, there are many others ...
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
 // enable "flash messaging" system
-// server.use(
-//   session({
-//     secret: "mySecretShOüldb3H4rD2Craaaäk",
-//     saveUninitialized: true,
-//     resave: true
-//   })
-// );
+server.use(
+  session({
+    secret: "mySecretShOüldb3H4rD2Craaaäk",
+    saveUninitialized: true,
+    resave: true
+  })
+);
 
-// server.use(flash());
+server.use(flash());
 
-// server.use(function(req, res, next) {
-//   res.locals.success_msg = req.flash("success");
-//   res.locals.error_msg = req.flash("error");
-//   next();
-// });
-
+// every time the server is called through HTTP ...
+// this exposeFlashMessage callback will be executed ....
+server.use(function exposeFlashMessage(req, res, next) {
+  res.locals.success_msg = req.flash("success");
+  res.locals.error_msg = req.flash("error");
+  next();
+});
 
 
 //------------------------------------------
