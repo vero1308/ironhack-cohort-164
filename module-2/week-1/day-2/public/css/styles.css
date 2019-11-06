@@ -1,19 +1,30 @@
+body {
+    font-family: Arial;
+    padding: 10px;
+}
 .form {
   display: flex;
   flex-direction: column;
+  max-width: 540px;
 }
-
-.form input {
+.form .input,
+.form .btn {
   border: 1px solid;
   border-radius: 0.3rem;
+  height: 32px;
+}
+.form .input {
   padding: 5px 0 5px 20px;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 }
-
-.form button {
-  border: 1px solid;
-  border-radius: 0.3rem;
+.form .btn {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 200px;
+  cursor: pointer;
+}
+.form .btn:hover {
+  background: black;
+  color: white;
 }

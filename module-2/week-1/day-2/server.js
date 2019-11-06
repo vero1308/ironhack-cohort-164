@@ -5,6 +5,9 @@ const hbs = require("hbs");
 // inital config
 const server = express();
 const port = 8090;
+
+server.use(express.urlencoded({ extended: true })); 
+// accept/parse POST requests > extract the object out the posted name/value pairs
 server.use(express.static("./public"));
 server.set("views", "./views");
 server.set("view engine", "hbs");
@@ -16,6 +19,19 @@ server.get("/", (req, res) => {
 
 server.get("/signup", (req, res) => {
   res.render("signup");
+});
+
+server.get("/signup", (req, res) => {
+  res.render("signup");
+});
+
+server.get("/signup-confirm", (req, res) => {
+  res.render("signup-confirm");
+});
+
+server.post("/signup", (req, res) => {
+  console.log(req.body); // there are the posted data
+  res.redirect("/signup-confirm");
 });
 
 // kickstart
