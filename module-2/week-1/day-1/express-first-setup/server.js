@@ -6,7 +6,6 @@ const server = express();
 // console.log(server);
 const port = 8080;
 
-
 // console.log(global)
 
 // console.log(__dirname); // node constant always available ... indicates the current file's absolute path
@@ -33,39 +32,45 @@ server.get("/", (request, response) => {
     doYouGetNode: true,
     icon1: '<i class="fa fa-heart"></i>',
     icon2: '<i class="fa fa-code"></i>',
-    css: ["home", "foo"]
+    css: ["transitions"],
+    scripts: []
   });
 });
 
 server.get("/about", (request, response) => {
-  // pass a title variable to the about view and display it on the page !!!
   const data = {
-    title: "foo",
+    title: "About my company",
     students: ["Sarah", "Amine", "Louise", "Camilo", "Parina", "Evgeny"],
-    css: ["about"]
+    studentsObjects: [
+      { name: "Sarah", cohort: 164 },
+      { name: "Amine", cohort: 164 },
+      { name: "Louise", cohort: 164 },
+      { name: "Camilo", cohort: 164 },
+      { name: "Parina", cohort: 164 },
+      { name: "Evgeny", cohort: 164 }
+    ],
+    css: [],
+    scripts: []
   };
   response.render("about", data);
 });
 
 server.get("/signup", (request, response) => {
   const data = {
-    title: "Signup",
-    students: [
-      {name: "PH", cohort: 164},
-      {name: "Nico", cohort: 164},
-      {name: "Venkat", cohort: 164}
-    ]
-  }
+    title: "Signup >> Let's do forms !",
+    css: ["forms"],
+    scripts: ["signup"]
+  };
   response.render("signup", data);
 });
 
-server.get("/contact",  (req, res) => {
-
+server.get("/contact", (req, res) => {
   res.render("contact", {
     title: "Contacto"
-  })
+  });
 });
 
-
-server.listen(port);
+server.listen(port, () => {
+  console.log(`server runs @ : http://localhost:${port}`);
+});
 // hey server : listen to http req on this specific port !!!

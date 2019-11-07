@@ -4,3 +4,21 @@
     <li>{{@index}} {{ this }}</li>
     {{/each}}
 </ul>
+
+<ul>
+    {{#each studentsObjects}}
+    <li>
+        {{#each this}}
+            <span>{{ this }}</span>
+        {{/each}}
+    </li>
+    {{/each}}
+</ul>
+
+<hr>
+
+<ul>
+    {{#each studentsObjects}}
+    <li> {{ this.name }} || {{this.cohort}} </li>
+    {{/each}}
+</ul>
