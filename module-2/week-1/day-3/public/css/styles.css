@@ -1,6 +1,5 @@
 body {
   font-family: Arial;
-  padding: 10px;
 }
 p {
   max-width: 540px;
@@ -36,14 +35,19 @@ a {
 .msg {
   max-width: 320px;
   padding: 20px;
+  text-align: center;
+  border-radius: .3rem;
+  margin-bottom: 10px;
 }
 .msg.error {
   color: #802b31;
   background: #f8d6da;
+  box-shadow: -0.3px 0.1px 2.4px 0.1px #802b31;
 }
 .msg.success {
   color: #216136;
-  background: #d4edda;
+  background: #d4edda;  
+  box-shadow: -0.3px 0.1px 2.4px 0.1px #216136;
 }
 .form {
   display: flex;

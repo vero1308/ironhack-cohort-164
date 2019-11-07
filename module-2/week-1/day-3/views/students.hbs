@@ -3,11 +3,17 @@
 <ul id="students" class="list">
     {{#each students}}
     <li>
-        <span>{{this.lastname}}</span>
+        <span>firstname: {{this.firstname}}</span>
         <span>|</span>
-        <span>{{this.email}}</span>
+        <span>email: {{this.email}}</span>
+        <span>|</span>
+        <span>age: {{this.age}}</span>
+        <span>|</span>
+        <span>cohort: {{this.cohort}}</span>
         <form style="display: inline" method="post" action="/delete-student/{{this._id}}">
-            <button class="btn">x</button>
+            <button class="btn">
+                <i class="fa fa-times"></i>
+            </button>
         </form>
 
         {{!-- <a href="/delete-student/{{this._id}}">delete</a> --}}

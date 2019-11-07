@@ -4,11 +4,22 @@
     <input class="input" id="firstname" name="firstname" type="text" value="testname">
     <label for="email">email</label>
     <input class="input" id="email" name="email" type="email" value="testname@testmail.com">
+
+    <label for="age">age</label>
+    <input class="input" id="age" name="age" type="number" min="17" max="80" value="18">
+
+    <label for="cohort">cohort</label>
+    <input class="input" id="cohort" name="cohort" type="number" min="125" max="300" value="164">
+
     <label for="password">password</label>
     <div class="row">
         <input class="input" id="password" name="password" type="password" value="12345Sunshine">
         <i id="eye" class="icon is-clickable fas fa-eye fa-lg"></i>
     </div>
+
+    {{!-- you can choose between button and input:submit tags to send any HTML form --}}
+    
     <button class="btn">go</button>
     {{!-- <input type="submit" value="go"> --}}
+
 </form>

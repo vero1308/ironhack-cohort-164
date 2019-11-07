@@ -26,12 +26,12 @@ router.post("/signup", (req, res) => {
   studentModel
     .create(req.body)
     .then(dbResult => {
-      req.flash("success", "user successfully created");
+      req.flash("success", "student successfully created");
       res.redirect("all-students");
     })
     .catch(dbError => {
       console.log(dbError);
-      req.flash("error", "an error occured while creating user");
+      req.flash("error", "an error occured while creating student");
       res.redirect("signup");
     });
 });
@@ -46,10 +46,13 @@ router.post("/delete-student/:id", (req, res) => {
   studentModel
     .findByIdAndDelete(req.params.id)
     .then(dbResult => {
+      req.flash("success", "student successfully deleted");
       res.redirect("/all-students");
     })
     .catch(dbError => {
       console.error(dbError);
+      req.flash("error", "error while deleting student");
+      res.redirect("/all-students");
     });
 
   // studentModel.findByIdAndDelete(req.params.id, function(dbError, dbResult) {
