@@ -1,0 +1,8 @@
+<ul class="list" id="artists">
+    {{#each artists}}
+    <li class="item artist">
+        {{this.name}}
+        <a href="/artist/{{this.id}}">more infos...</a>
+    </li>
+    {{/each}}
+</ul>
