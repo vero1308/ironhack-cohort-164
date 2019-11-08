@@ -1,0 +1,15 @@
+<h1 class="title">All albums</h1>
+<ul>
+    {{!-- albums comes from the controller (router) --}}
+    {{#each albums}}
+    <li>
+        {{ this.artist }} - {{ this.title }}
+    </li>
+    <img src="{{this.cover}}" alt="">
+    <ul class="album-widget">
+        <li><a class="link" href="/album/{{this._id}}">..see more</a></li>
+        <li><a class="link" href="/album-edit/{{this._id}}">edit</a></li>
+        <li><a class="link" href="/album-delete/{{this._id}}">delete</a></li>
+    </ul>
+    {{/each}}
+</ul>

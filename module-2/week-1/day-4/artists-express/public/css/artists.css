@@ -1,0 +1,26 @@
+#artists {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#artists .artist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: -0.6px 0px 1.7px 1.2px black;
+  flex: 0 0 32%;
+  height: 180px;
+  min-width: 180px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  border-radius: 0.35rem;
+}
+
+.artist .stars {
+  margin-top: 7px;
+}
+
+.artist .stars .star {
+  color: #ffbe00;
+}

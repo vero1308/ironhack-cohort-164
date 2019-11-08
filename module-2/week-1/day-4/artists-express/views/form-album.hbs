@@ -1,0 +1,13 @@
+<h1 class="title">Create Album</h1>
+<form method="post" action="/create-album" class="form">
+    {{!-- (label+input)*4 --}}
+    <label for="title">title</label>
+    <input class="input" id="title" name="title" type="text" value="foo">
+    <label for="artist">artist</label>
+    <input class="input" id="artist" name="artist" type="text" value="bar">
+    <label for="cover">cover</label>
+    <input class="input" id="cover" name="cover" type="text" value="https://s1.qwant.com/thumbr/0x0/0/f/fdfa81c402c77f52d6face6f4a3a1d741b8a533b73d2b528beabbb5c2b0bbf/198_336181_the-wall-immersion-box-set-cd2.jpg?u=https%3A%2F%2Fir.soundike.com%2F198_336181_the-wall-immersion-box-set-cd2.jpg&q=0&b=1&p=0&a=1">
+    <label for="releaseDate">releaseDate</label>
+    <input class="input" id="releaseDate" name="releaseDate" type="date">
+    <button class="btn">ok</button>
+</form>

@@ -1,0 +1,13 @@
+<h1 class="title">Create Album</h1>
+<form method="post" action="/edit-album/{{album._id}}" class="form">
+    {{!-- (label+input)*4 --}}
+    <label for="title">title</label>
+    <input class="input" id="title" name="title" type="text" value="{{album.title}}">
+    <label for="artist">artist</label>
+    <input class="input" id="artist" name="artist" type="text" value="{{album.artist}}">
+    <label for="cover">cover</label>
+    <input class="input" id="cover" name="cover" type="text" value="{{album.cover}}">
+    <label for="releaseDate">releaseDate</label>
+    <input class="input" id="releaseDate" name="releaseDate" type="date" value="{{album.releaseDate}}">
+    <button class="btn">ok</button>
+</form>
