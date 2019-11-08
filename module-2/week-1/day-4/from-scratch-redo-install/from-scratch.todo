@@ -1,0 +1,13 @@
+create an express app from scratch
+
+dependencies = express + hbs
+
+- 3 pages
+-- home featuring a nice image
+----  bonus: a slideshow plugin displaying a list of images
+-- about (with a simple text)
+-- products 
+---- displaying a list of products
+-------- the products are passed to the view as a parameter (dynamic)
+-------- this parameter is a hardcoded array of objects 
+-------- each product has at least a name and a price

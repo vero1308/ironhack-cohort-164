@@ -1,0 +1,15 @@
+$blue: dodgerblue;
+
+body {
+  color: red;
+}
+
+.title {
+  span {
+    color: $blue;
+  }
+}
+
+.user {
+  color: $blue;
+}
