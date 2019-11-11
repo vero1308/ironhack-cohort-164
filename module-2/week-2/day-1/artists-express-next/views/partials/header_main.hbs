@@ -1,0 +1,11 @@
+<header id="header_main">
+  <nav id="nav_main" class="nav">
+    <a class="link" href="/home">home |</a>
+    <a href="/all-albums">all albums |&nbsp;</a>
+    <a href="/all-artists">all artists |&nbsp;</a>
+    <a href="/admin">admin |&nbsp;</a>
+  </nav>
+  {{#if isAdmin}}
+  {{> nav_admin}}
+  {{/if}}
+</header>

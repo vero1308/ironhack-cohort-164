@@ -1,0 +1,16 @@
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+}
+
+.tabler.styles td.name {
+  width: 80%;
+}
+
+.tabler td:not(.name) {
+  text-align: center;
+}

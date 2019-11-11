@@ -1,0 +1,13 @@
+<h1 class="title">All albums</h1>
+{{!-- <pre>{{albums}}</pre> --}}
+<ul class="list albums">
+    {{#each albums}}
+    <li class="album">
+        <a class="is-clickable" href="/album/{{this._id}}">
+            <span>{{ this.artist.name }}</span>&nbsp;<b>({{this.artist.style.name}})</b>
+            <img class="cover" src="{{this.cover}}" alt="cover {{ this.title }}">
+            <span>{{ this.title }} </span>
+        </a>
+    </li>
+    {{/each}}
+</ul>

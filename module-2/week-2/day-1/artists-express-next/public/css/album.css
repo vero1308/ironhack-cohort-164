@@ -1,0 +1,22 @@
+.list.albums {
+  display: flex;
+}
+
+.list.albums .link {
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 0.3rem;
+  margin-right: 10px;
+}
+
+.list.albums :last-child .link {
+  margin-right: 0;
+}
+
+.list.albums .album {
+  margin-right: 20px;
+}
+
+.list.albums .album .cover {
+  width: 220px;
+}
