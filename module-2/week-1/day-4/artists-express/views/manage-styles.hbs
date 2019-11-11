@@ -1,0 +1,43 @@
+<h1 class="title">Styles manager</h1>
+<table class="tabler styles">
+    <thead class="head">
+        <tr>
+            <th colspan="3">
+                <form method="post" action="/create-style">
+                    <label for="name">name &gt;</label>
+                    <input id="name" name="name" type="text">
+                    <label for="wikiURL">wiki &gt;</label>
+                    <input id="wikiURL" name="wikiURL" type="text">
+                    <button>ok</button>
+                </form>
+            </th>
+        </tr>
+    </thead>
+    <tbody class="body">
+
+        {{#unless styles}}
+        <tr>
+            <td colspan="3">no styles yet</td>
+        </tr>
+        {{/unless}}
+
+        {{#each styles}}
+        <tr>
+            <td class="name">{{this.name}}</td>
+            <td>
+                {{#if this.wikiURL}}
+                <a href="{{this.wikiURL}}" target="_blank">
+                    <i class="fa fa-link"></i>
+                </a>
+                {{/if}}
+            </td>
+            <td>
+                <a href="/delete-style/{{this._id}}">
+                    <i class="fa fa-times"></i>
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
