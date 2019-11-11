@@ -1,6 +1,6 @@
 // initial config
 require("./config/mongo.js"); // database connection
-
+require("./utils/hbs_helpers"); // custom functions adding usefull features to hbs templates
 // dependencies injection
 const express = require("express");
 const path = require("path");
@@ -14,8 +14,10 @@ const session = require("express-session");
 const server = express();
 const port = 9090;
 
-// Allow server to parse POST Request
+// Allow server to parse body from POST Request
 server.use(express.urlencoded({ extended: true }));
+// Allow server to parse JSON from AJAX Request
+server.use(express.json());
 
 // Make everything inside of public/ available to the browser (styles, images, frontend scripts)
 server.use(express.static(path.join(__dirname, "public"))); // rock solid syntax
