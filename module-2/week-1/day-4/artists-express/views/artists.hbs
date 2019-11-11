@@ -1,8 +1,9 @@
-<ul class="list" id="artists">
+<h1 class="title">All artists</h1>
+<ul class="list artists">
     {{#each artists}}
-    <li class="item artist">
+    <li class="artist">
         {{this.name}}
-        <a href="/artist/{{this._id}}">more infos...</a>
+        <a href="/artist/{{this._id}}">see details...</a>
     </li>
     {{/each}}
 </ul>
