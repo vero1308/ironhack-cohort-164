@@ -1,5 +1,5 @@
 // initial config
-require("./config/mongo.js.js"); // database connection
+require("./config/mongo"); // database connection
 require("./utils/hbs_helpers"); // custom functions adding usefull features to hbs templates
 // dependencies injection
 const express = require("express");
@@ -56,10 +56,10 @@ server.use(function exposeFlashMessage(req, res, next) {
 //------------------------------------------
 // SPLITED ROUTING
 // ------------------------------------------
-const baseRouter = require("./routes/base.js.js");
-const artistRouter = require("./routes/artist.js.js");
-const styleRouter = require("./routes/style.js.js");
-const albumRouter = require("./routes/album.js.js");
+const baseRouter = require("./routes/base.js");
+const artistRouter = require("./routes/artist.js");
+const styleRouter = require("./routes/style.js");
+const albumRouter = require("./routes/album.js");
 
 server.use(baseRouter);
 server.use(artistRouter);
