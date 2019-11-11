@@ -1,13 +1,14 @@
+/*------------------------------------------
+// STYLES ROUTING
+------------------------------------------*/
 const express = require("express");
 const router = new express.Router();
-
 const styleModel = require("./../models/Style");
+const protectAdminRoute = require("./../middlewares/protectAdminRoute");
 
-/*------------------------------------------
-// ARTISTS ROUTING
-------------------------------------------*/
+// BACKEND ROUTES
 
-router.post("/create-style", (req, res) => {
+router.post("/create-style", protectAdminRoute, (req, res) => {
   const newStyle = {
     name: req.body.name,
     wikiURL: req.body.wikiURL
@@ -19,16 +20,20 @@ router.post("/create-style", (req, res) => {
   });
 });
 
-
-router.get("/delete-style/:id", (req, res) => {
+router.get("/delete-style/:id", protectAdminRoute, (req, res) => {
   styleModel.findByIdAndRemove(req.params.id).then(dbRes => {
     res.redirect("/manage-styles");
   });
 });
 
-router.get("/manage-styles", (req, res) => {
+router.get("/manage-styles", protectAdminRoute, (req, res) => {
   styleModel.find().then(dbRes => {
-    res.render("manager-style", { styles: dbRes, css: ["tabler"] });
+    res.render("manage-styles", {
+      axios: true,
+      styles: dbRes,
+      css: ["tabler"],
+      js: ["manage-styles"]
+    });
   });
 });
 
