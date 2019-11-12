@@ -8,6 +8,7 @@ const artistSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Style"
   },
+  description: String,
   isBand: Boolean,
   rates: [Number]
 });
