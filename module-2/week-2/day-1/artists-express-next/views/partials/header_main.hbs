@@ -4,7 +4,12 @@
     <a class="link" href="/all-artists">all artists |</a>
     <a class="link" href="/all-albums">all albums |</a>
     <a class="link" href="/admin">admin |</a>
+    {{#unless isLoggedIn}}
     <a class="link" href="/signin">signin |</a>
+    {{/unless}}
+    {{#if isLoggedIn}}
+    <a class="link" href="/logout">logout |</a>
+    {{/if}}
   </nav>
   {{#if isAdmin}}
     {{> nav_admin}}

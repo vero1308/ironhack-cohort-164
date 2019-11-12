@@ -42,6 +42,14 @@ router.get("/signin", (req, res) => {
   res.render("auth/signin");
 });
 
+router.get("/logout", (req, res) => {
+  req.session.destroy(err => {
+    res.locals.isLoggedIn = undefined;
+    res.locals.isAdmin = undefined;
+    res.redirect("/signin");
+  });
+});
+
 // BACKEND SITE
 
 router.get("/admin", protectAdminRoute, (req, res) => {

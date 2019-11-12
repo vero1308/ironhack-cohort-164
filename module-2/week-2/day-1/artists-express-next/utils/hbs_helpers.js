@@ -75,7 +75,7 @@ hbs.registerHelper("color-cat", genre => {
     electro: "darkyellow",
     default: "chartreuse"
   };
-  return colors[genre] || color["default"];
+  return colors[genre] || colors["default"];
 });
 
 hbs.registerHelper("format-date", function(date, rule) {
