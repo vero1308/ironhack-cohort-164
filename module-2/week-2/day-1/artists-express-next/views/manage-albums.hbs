@@ -18,14 +18,16 @@
         {{/unless}}
 
         {{#each albums}}
-        <pre>{{this}}</pre>
+
+        {{!-- <pre>{{this.artist}}</pre> --}}
+        
         <tr>
             <td>{{this.title}}</td>
             <td>
                 {{this.artist.name}}
             </td>
             <td>
-                {{this.releaseDate}}
+                {{format-date this.releaseDate '' }}
             </td>
             <td>
                 <a class="fas fa-pen" href="/edit-album/{{this._id}}"></a>

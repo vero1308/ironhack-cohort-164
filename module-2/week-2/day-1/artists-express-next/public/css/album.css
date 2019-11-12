@@ -1,22 +1,53 @@
 .list.albums {
   display: flex;
-}
-
-.list.albums .link {
-  border: 1px solid;
-  padding: 5px;
-  border-radius: 0.3rem;
-  margin-right: 10px;
-}
-
-.list.albums :last-child .link {
-  margin-right: 0;
+  flex-wrap: wrap;
 }
 
 .list.albums .album {
+  max-width: 320px;
+  min-width: 300px;
+  flex: 1;
   margin-right: 20px;
+  margin-bottom: 20px;
 }
 
-.list.albums .album .cover {
-  width: 220px;
+@media (max-width: 590px) {
+  .list.albums {
+    justify-content: center;
+  }
+}
+
+.list.albums > .link {
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 0.3rem;
+}
+
+.list.albums .album > .link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+.list.albums .link .color-code {
+  height: 12px;
+  width: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.list.albums .album .link:hover {
+  color: initial;
+}
+
+.album .cover {
+  max-width: 240px;
 }

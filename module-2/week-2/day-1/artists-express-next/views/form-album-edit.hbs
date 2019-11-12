@@ -1,13 +1,24 @@
 <h1 class="title">Edit Album</h1>
 <form method="post" action="/edit-album/{{album._id}}" class="form">
-    {{!-- (label+input)*4 --}}
+
     <label for="title">title</label>
     <input class="input" id="title" name="title" type="text" value="{{album.title}}">
     <label for="artist">artist</label>
-    <input class="input" id="artist" name="artist" type="text" value="{{album.artist}}">
+
+    <input class="input" id="artist" list="artists" name="artist" value="{{album.artist.name}}"/>
+
+    <datalist id="artists">
+        {{#each artists}}
+        <option value="{{this._id}}" {{ternary }}>{{this.name}}</option>
+        {{/each}}
+    </datalist>
+
     <label for="cover">cover</label>
     <input class="input" id="cover" name="cover" type="text" value="{{album.cover}}">
+    <div class="album">
+        <img class="cover" src="{{album.cover}}" alt="">
+    </div>
     <label for="releaseDate">releaseDate</label>
     <input class="input" id="releaseDate" name="releaseDate" type="date" value="{{album.releaseDate}}">
-    <button class="btn">ok</button>
+    <button class="btn">edit !</button>
 </form>

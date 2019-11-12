@@ -4,6 +4,7 @@
 node_modules/
 *.DS_Store
 
+./git-tips.txt
 
 module-1/labs-soluce-proposals/lab-javascript-all-times-movies
 

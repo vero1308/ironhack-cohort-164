@@ -6,6 +6,7 @@ const express = require("express");
 const router = new express.Router();
 const albumModel = require("./../models/Album");
 const artistModel = require("./../models/Artist");
+const formatDate = require("./../utils/date-format");
 const protectAdminRoute = require("./../middlewares/protectAdminRoute");
 
 // PUBLIC ROUTES
@@ -21,7 +22,6 @@ router.get("/all-albums", (req, res) => {
     }) // the artist key is a reference (objectId) to another document in the artists collection
     .then(dbRes => {
       // if successfull, it's an array of albums
-      // console.log(dbRes)
       res.render("albums", { albums: dbRes, css: ["album"] }); // pass the array to the view
     })
     .catch(dbErr => {
@@ -31,14 +31,16 @@ router.get("/all-albums", (req, res) => {
 });
 
 router.get("/album/:id", (req, res) => {
-  console.log(req.params);
   albumModel
     .findOne({ _id: { $eq: req.params.id } }) // this will fetch one album by id from db
+    .populate("artist")
     .then(dbRes => {
       // if successfull, it's an objet representing an albums
-      console.log("found album =>");
-      console.log(dbRes);
-      res.render("album", { album: dbRes });
+      console.log("found album =>", dbRes);
+      res.render("album", {
+        album: formatDate(dbRes, "releaseDate", "YYYY"),
+        css: ["album"]
+      });
     })
     .catch(dbErr => {
       // if an error occured
@@ -51,7 +53,7 @@ router.get("/create-album", protectAdminRoute, (req, res) => {
   artistModel
     .find()
     .then(dbRes => {
-      res.render("form-album", {artists: dbRes});
+      res.render("form-album", { artists: dbRes });
     })
     .catch(dbErr => {
       console.error(dbErr);
@@ -61,14 +63,22 @@ router.get("/create-album", protectAdminRoute, (req, res) => {
 router.get("/edit-album/:id", protectAdminRoute, (req, res) => {
   albumModel
     .findOne({ _id: { $eq: req.params.id } }) // this will fetch one album by id from db
+    .populate("artist")
     .then(dbRes => {
-      // if successfull, it's an objet representing an albums
-      res.render("form-album-edit", { album: dbRes });
+      // if successfull, dbRes is an objet representing the album fetched by id
+      artistModel
+      .find()
+      .then(artists => {
+        // if successfull, artists is an objet representing an albums
+        res.render("form-album-edit", {
+          album: formatDate(dbRes, "releaseDate"),
+          artists,
+          css: ["album"]
+        });
+      })
+ 
     })
-    .catch(dbErr => {
-      // if an error occured
-      console.log("err", dbErr);
-    });
+    .catch(dbErr => console.log("err", dbErr)); // catched if an error occured );
 });
 
 router.get("/manage-albums", protectAdminRoute, (req, res) => {
@@ -76,6 +86,8 @@ router.get("/manage-albums", protectAdminRoute, (req, res) => {
     .find()
     .populate("artist")
     .then(dbRes => {
+      // const dateFormated = dbRes.map(album => formatDate(album, "releaseDate"));
+
       res.render("manage-albums", { albums: dbRes, css: ["tabler"] });
     })
     .catch(dbErr => console.log("err", dbErr));

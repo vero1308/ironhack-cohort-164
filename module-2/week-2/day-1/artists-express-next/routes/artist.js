@@ -14,7 +14,7 @@ router.get("/all-artists", (req, res) => {
     .find()
     .populate("style")
     .then(dbRes => {
-      console.log(dbRes);
+      // console.log(dbRes);
       res.render("artists", { artists: dbRes, css: ["artist"] });
     });
 });
@@ -65,6 +65,36 @@ router.get("/manage-artists", protectAdminRoute, (req, res) => {
         artists: dbRes,
         css: ["artists", "tabler"]
       });
+    });
+});
+
+router.get("/edit-artist/:id", protectAdminRoute, (req, res) => {
+  artistModel.findById(req.params.id)
+  .populate("style")
+  .then(dbRes => {
+    styleModel.find()
+    .then(styles =>  {
+      res.render("form-artist-edit", {artist: dbRes, styles: styles, css: ["artist"]});
+    })
+  }).catch(dbErr => console.log(dbErr))
+});
+
+router.post("/edit-artist/:id", protectAdminRoute, (req, res) => {
+
+  const updatedArtist = {
+    name: req.body.name,
+    style: req.body.style,
+    isBand: Boolean(Number(req.body.isBand))
+  };
+
+  artistModel
+    .findByIdAndUpdate(req.params.id, updatedArtist)
+    .then(dbRes => {
+      req.flash("success", "artist successfully updated");
+      res.redirect("/manage-artists");
+    })
+    .catch(dbErr => {
+      console.error(dbErr);
     });
 });
 

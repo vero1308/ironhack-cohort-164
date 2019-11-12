@@ -24,13 +24,19 @@
 </head>
 
 <body>
+    <div>
+        log: {{isLoggedIn}}
+        admin : {{isAdmin}}
+    </div>
     {{> header_main}}
 
     <main id="content_main">
         {{{body}}}
     </main>
 
-
+    <footer id="footer_main">
+        <span>JS +&nbsp;</span><i class="fa fa-heart"></i>&nbsp;<span>+</span>&nbsp;<i class="fa fa-code"></i>
+    </footer>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <form method="post" action="/create-artist" class="form">
-    <h1 class="title">Create a new Artist</h1>
+    <h1 class="title">Create new Artist</h1>
     <label for="name">name</label>
-    <input class="input" id="name" name="name" type="text" value="Wu Tang Clan">
+    <input class="input" id="name" name="name" type="text" value="" required>
     <div class="row" style="max-width: 300px; justify-content: space-between">
         <label>Band ?</label>
         <div>
@@ -19,5 +19,5 @@
         <option value="{{this._id}}">{{this.name}}</option>
         {{/each}}
     </select>
-    <button class="btn">create</button>
+    <button class="btn">create !</button>
 </form>

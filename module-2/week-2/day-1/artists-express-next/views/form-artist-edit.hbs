@@ -1,0 +1,33 @@
+{{!-- <pre>
+    {{artist}}
+</pre> --}}
+<form method="post" action="/edit-artist/{{artist._id}}" class="form">
+    <h1 class="title">Edit a new Artist</h1>
+    <label for="name">name</label>
+    <input class="input" id="name" name="name" type="text" value="{{artist.name}}">
+    <div class="row" style="max-width: 300px; justify-content: space-between">
+        <label>Band ?</label>
+        <div>
+            <label for="yes">yes</label>
+            <input type="radio" name="isBand" id="yes" value="1" {{ ternary artist.isBand "checked" null }}>
+        </div>
+        <div>
+            <label for="no">no</label>
+            <input type="radio" name="isBand" id="no" value="0" {{ ternary artist.isBand null "checked"  }}>
+        </div>
+    </div>
+    <label for="style">Style</label>
+    <select name="style" id="style" class="input">
+    {{#each styles}}
+    
+        {{#compare ../artist.style.name this.name operator="=="}}
+        <option value="{{this._id}}" selected>{{this.name}}</option>
+        {{/compare}}
+
+        {{#compare ../artist.style.name this.name operator="!="}}
+        <option value="{{this._id}}" >{{this.name}}</option>
+        {{/compare}}
+    {{/each}}
+    </select>
+    <button class="btn">edit !</button>
+</form>

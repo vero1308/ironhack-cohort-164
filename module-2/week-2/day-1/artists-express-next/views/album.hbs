@@ -1,4 +1,7 @@
-<h1 class="title">{{album.title}}</h1>
-<p>
-    {{album.artist}} recorded this opus in {{album.releaseDate}}
-</p>
+<div class="album">
+    <h1 class="title">{{album.title}}</h1>
+    <img src="{{album.cover}}" alt="" class="cover">
+    <p>
+        <a href="/artist/{{album.artist._id}}" class="link">{{album.artist.name}}</a>  recorded this opus in {{format-date album.releaseDate '' }}
+    </p>
+</div>

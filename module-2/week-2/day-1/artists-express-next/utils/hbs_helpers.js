@@ -1,4 +1,5 @@
 const hbs = require("hbs");
+const moment = require("moment");
 
 // CUSTOM HELPERS
 
@@ -63,4 +64,21 @@ hbs.registerHelper("compare", function(lvalue, rvalue, options) {
   } else {
     return options.inverse(this);
   }
+});
+
+hbs.registerHelper("color-cat", genre => {
+  const colors = {
+    rock: "black",
+    jazz: "#c908c9", // purple
+    rap: "#1616e4", // navy blue
+    techno: "orange",
+    electro: "darkyellow",
+    default: "chartreuse"
+  };
+  return colors[genre] || color["default"];
+});
+
+hbs.registerHelper("format-date", function(date, rule) {
+  if (!rule) rule = "YYYY-MM-DD";
+  return moment(date).format(rule);
 });

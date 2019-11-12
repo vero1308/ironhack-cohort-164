@@ -19,6 +19,25 @@ function registerLog(req, res, next) {
   });
 }
 
+
+//  app.get("*", (req, res) => {
+//     // --------- sending data back to client
+//     res.send("content 0 sent back.");
+// });
+
+app.get("/foo", myFirstMiddleware, (req, res) => {
+  console.log("what ? > ", req.foo);
+  // --------- sending data back to client
+  res.send("content 1 sent back.");
+});
+
+// chaining middlewares
+// app.get("*", myFirstMiddleware, registerLog, (req, res) => {
+//     // --------- sending data back to client
+//     res.send("content 2 sent back.");
+// });
+
+
 function passingArgToAMiddleware(value) {
   console.log("argument : " + value);
   // where using a closure here ; )
@@ -32,34 +51,17 @@ function passingArgToAMiddleware(value) {
   };
 }
 
- app.get("*", (req, res) => {
-    // --------- sending data back to client
-    res.send("content 0 sent back.");
-});
-
-// app.get("/foo", myFirstMiddleware, (req, res) => {
-//   console.log("what ? > ", req.foo);
-//   // --------- sending data back to client
-//   res.send("content 1 sent back.");
-// });
-
-// chaining middlewares
-// app.get("*", myFirstMiddleware, registerLog, (req, res) => {
-//     // --------- sending data back to client
-//     res.send("content 2 sent back.");
-// });
-
 // chaining meddlewares + passing argument to a middleware
-// app.get(
-//   "*",
-//   myFirstMiddleware,
-//   registerLog,
-//   passingArgToAMiddleware("hello world"),
-//   (req, res) => {
-//     console.log("what ? > ", req.augmentedArgument);
-//     res.send("content 3 sent back."); // sending data back to client
-//   }
-// );
+app.get(
+  "*",
+  myFirstMiddleware,
+  registerLog,
+  passingArgToAMiddleware("hello world"),
+  (req, res) => {
+    console.log("what ? > ", req.augmentedArgument);
+    res.send("content 3 sent back."); // sending data back to client
+  }
+);
 
 app.listen(3333, () => {
   console.log("app serving content @ http://localhost:3333");

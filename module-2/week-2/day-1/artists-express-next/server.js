@@ -1,6 +1,7 @@
 // initial config
 require("./config/mongo"); // database connection
 require("./utils/hbs_helpers"); // custom functions adding usefull features to hbs templates
+
 // dependencies injection
 const express = require("express");
 const path = require("path");
@@ -54,17 +55,29 @@ server.use(function exposeFlashMessage(req, res, next) {
 
 
 //------------------------------------------
+// Login
+// ------------------------------------------
+server.use(function checkLoggedIn(req, res, next) {
+  console.log(req.currentUser)
+  res.locals.isLoggedIn = Boolean(req.session.currentUser);
+  res.locals.isAdmin = Boolean(req.session.currentUser && req.session.currentUser.role === "admin");
+  next();
+});
+
+//------------------------------------------
 // SPLITED ROUTING
 // ------------------------------------------
 const baseRouter = require("./routes/base.js");
 const artistRouter = require("./routes/artist.js");
 const styleRouter = require("./routes/style.js");
 const albumRouter = require("./routes/album.js");
+const authRouter = require("./routes/auth.js");
 
 server.use(baseRouter);
 server.use(artistRouter);
 server.use(styleRouter);
 server.use(albumRouter);
+server.use("/auth", authRouter);
 
 server.listen(port, () => {
   console.log(`server runs @ : http://localhost:${port}`);

@@ -1,2 +1,8 @@
-1573466251817 - GET : /
-1573466252053 - GET : /favicon.ico
+1573467224109 - GET : /home
+1573467224152 - GET : /favicon.ico
+1573467228072 - GET : /home
+1573467228114 - GET : /favicon.ico
+1573467233398 - GET : /test
+1573467233448 - GET : /favicon.ico
+1573467488758 - GET : /gdgdgdg
+1573467488852 - GET : /favicon.ico
