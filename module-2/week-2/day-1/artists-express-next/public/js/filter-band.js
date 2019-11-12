@@ -16,6 +16,21 @@ function updateList(artists) {
   });
 }
 
+function handleInput(evt) {
+  //   console.log(evt.target.checked);
+  apiService
+    .get(`/filtered-artists?band=${evt.target.checked}`)
+    .then(apiRes => {
+      console.log(apiRes.data);
+      updateList(apiRes.data);
+    })
+    .catch(apiErr => {
+      console.log(apiErr);
+    });
+}
+
+checkbox.oninput = handleInput;
+
 // function updateList3(artists) {
 //   const artistCards = document.querySelectorAll(".artists .artist");
 //   artistCards.forEach(card => {
@@ -43,18 +58,3 @@ function updateList(artists) {
 //     return y;
 //   });
 // }
-
-function handleInput(evt) {
-  //   console.log(evt.target.checked);
-  apiService
-    .get(`/filtered-artists?band=${evt.target.checked}`)
-    .then(apiRes => {
-      console.log(apiRes.data);
-      updateList(apiRes.data);
-    })
-    .catch(apiErr => {
-      console.log(apiErr);
-    });
-}
-
-checkbox.oninput = handleInput;
