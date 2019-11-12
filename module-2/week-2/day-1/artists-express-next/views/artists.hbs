@@ -1,7 +1,13 @@
 <h1 class="title">All artists</h1>
+<hr>
+<div class="filter widgets">
+    <label class="is-clickable" for="filter_band_only">get only bands</label>
+    <input class="is-clickable" type="checkbox" id="filter_band_only">
+</div>
+<hr>
 <ul class="list artists">
     {{#each artists}}
-    <li class="artist shadow-box">
+    <li data-artist-id="{{this._id}}" class="artist shadow-box">
         <div class="color-code" style="background: {{color-cat this.style.name}}"></div>
         <h2 class="title">{{this.name}}</h2>
         <a href="/artist/{{this._id}}">see details...</a>

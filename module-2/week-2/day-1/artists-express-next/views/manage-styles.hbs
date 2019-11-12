@@ -3,12 +3,12 @@
     <thead class="head">
         <tr>
             <th colspan="4">
-                <form method="post" action="/create-style">
+                <form method="post" id="form_create_style">
                     <label for="name">name &gt;</label>
                     <input id="name" name="name" type="text">
                     <label for="wikiURL">wiki &gt;</label>
                     <input id="wikiURL" name="wikiURL" type="text">
-                    <button>ok</button>
+                    <button id="create_style">ok</button>
                 </form>
             </th>
         </tr>
@@ -22,11 +22,11 @@
         {{/unless}}
 
         {{#each styles}}
-        <tr>
+        <tr data-row-style-id="{{this._id}}">
             <td class="name">{{this.name}}</td>
             <td>
                 {{#if this.wikiURL}}
-                <a href="{{this.wikiURL}}" target="_blank">
+                <a class="wikiURL" href="{{this.wikiURL}}" target="_blank">
                     <i class="fa fa-link"></i>
                 </a>
                 {{/if}}

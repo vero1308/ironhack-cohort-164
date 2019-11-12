@@ -4,7 +4,9 @@
     {{#each albums}}
     <li class="album shadow-box">
         <a class="link is-clickable" href="/album/{{this._id}}">
-            <div class="color-code" style="background: {{color-cat this.artist.style.name}}"></div>
+            <div class="color-code" 
+            style="background: {{color-cat this.artist.style.name}}">
+            </div>
             <h2 class="title">{{ this.artist.name }}&nbsp;</h2>
             <img class="cover" src="{{this.cover}}" alt="cover {{ this.title }}">
             <span>{{ this.title }} </span>

@@ -15,9 +15,29 @@ router.post("/create-style", protectAdminRoute, (req, res) => {
   };
 
   styleModel.create(newStyle).then(dbRes => {
-    // console.log(dbRes);
-    res.redirect("/manage-styles");
+    res.send(dbRes);
   });
+});
+
+router.patch("/edit-style/:id", protectAdminRoute, (req, res) => {
+
+  styleModel
+    .findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(dbRes => {
+      res.send(dbRes);
+    })
+    .catch(dbErr => {
+      console.log(dbErr);
+    });
+});
+
+router.get("/style/:id", protectAdminRoute, (req, res) => {
+  styleModel
+    .findOne({ _id: req.params.id })
+    .then(dbRes => {
+      res.send(dbRes);
+    })
+    .catch(dbErr => res.send(dbErr));
 });
 
 router.get("/delete-style/:id", protectAdminRoute, (req, res) => {

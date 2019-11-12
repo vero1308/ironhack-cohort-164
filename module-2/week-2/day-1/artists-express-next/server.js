@@ -40,6 +40,8 @@ server.use(
     secret: "mySecretShOüldb3H4rD2Craaaäk",
     saveUninitialized: true,
     resave: true
+    // req.session.cookie.expires = new Date(Date.now() + hour)
+    // req.session.cookie.maxAge = hour
   })
 );
 
@@ -58,7 +60,7 @@ server.use(function exposeFlashMessage(req, res, next) {
 // Login
 // ------------------------------------------
 server.use(function checkLoggedIn(req, res, next) {
-  console.log(req.currentUser)
+  console.log(req.session.currentUser);
   res.locals.isLoggedIn = Boolean(req.session.currentUser);
   res.locals.isAdmin = Boolean(req.session.currentUser && req.session.currentUser.role === "admin");
   next();

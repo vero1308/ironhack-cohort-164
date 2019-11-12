@@ -3,33 +3,32 @@ const router = express.Router();
 const userModel = require("../models/User");
 const bcrypt = require("bcrypt");
 
-//Authorization
+// Registering
 
 router.post("/signup", (req, res, next) => {
  
   const user = req.body; // req.body contains the submited informations (out of post request)
   
   if (!user.email || !user.password) {
-    res.redirect("/signup", { errorMsg: "All fields are required." });
+    res.redirect("/signup");
     return;
 
   } else {
-
-    console.log("ICI CI CIC CI");
-    
 
     userModel
       .findOne({ email: user.email })
       .then(dbRes => {
         if (dbRes) {
-          res.redirect("/signup", { errorMsg: "User already exists !" });
+          res.redirect("/signup");
           return;
         }
+
+        console.log("here ...")
         const salt = bcrypt.genSaltSync(10); // cryptography librairie
         const hashed = bcrypt.hashSync(user.password, salt);
+        console.log("original", user.password);
         user.password = hashed;
 
-        console.log("original", user.password);
         console.log("hashed", hashed);
         // return ;
         userModel
@@ -43,29 +42,33 @@ router.post("/signup", (req, res, next) => {
   }
 });
 
-//Authenticating
+// Login
 
 router.post("/signin", (req, res, next) => {
   const user = req.body;
 
   if (!user.email || !user.password) {
-    res.render("auth/signin", { errorMsg: "Please fill in all the fields" });
+    return res.redirect("/signin");
   }
+
   userModel
     .findOne({ email: user.email })
     .then(dbRes => {
+
       if (!dbRes) {
-        res.render("auth/signin", { errorMsg: "Bad email or password" });
-        return;
+        return res.redirect("/signin");
       }
+
+      // user has been found in DB !
+
       if (bcrypt.compareSync(user.password, dbRes.password)) {
-        console.log("good pass")
-        req.session.currentUser = user;
-        res.redirect("/admin");
-        return;
+        console.log("good pass", dbRes)
+        req.session.currentUser = dbRes;
+        return res.redirect("/admin");
+
       } else {
-        console.log("bad pass")
-        res.render("auth/signin", { errorMsg: "Bad email or password" });
+        console.log("bad pass");
+        res.redirect("/signin");
         return;
       }
     })

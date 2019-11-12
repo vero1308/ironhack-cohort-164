@@ -6,6 +6,13 @@
 <p> {{artist.description}}
 </p>
 <hr>
-<p>
-    <b>@todo : + display artist description + all related albums for a given artist </b>
-</p>
+<ul>
+
+    {{#each albums}}
+    <li>
+        {{this.title}}
+    </li>
+
+    {{/each}}
+
+</ul>
