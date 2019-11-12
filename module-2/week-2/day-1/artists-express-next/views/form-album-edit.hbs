@@ -1,20 +1,19 @@
-<h1 class="title">Edit Album</h1>
+<h1 class="title">Edit Album {{album.artist._id}}</h1>
 <form method="post" action="/edit-album/{{album._id}}" class="form">
 
     <label for="title">title</label>
     <input class="input" id="title" name="title" type="text" value="{{album.title}}">
     <label for="artist">artist</label>
 
-    <input class="input" id="artist" list="artists" name="artist" value="{{album.artist.name}}"/>
+    <input class="input" id="artist" list="artists" name="artist" value="{{album.artist.id}}"/>
 
     <datalist id="artists">
         {{#each artists}}
-        {{../album.artist._id}}
-        {{#compare this._id ../album.artist._id operator="===" }}
+        {{#compare this.name ../album.artist.name operator="===" }}
         <option value="{{this._id}}" selected class="cool">{{this.name}}</option>
         {{/compare }}
-        {{#compare this._id ../album.artist._id operator="!=" }}
-        <option value="{{this._id}}" class="pas cool">{{this.name}}</option>
+        {{#compare this.name ../album.artist.name operator="!=" }}
+        <option value="{{this._id}}" >{{this.name}}</option>
         {{/compare }}
         {{/each}}
     </datalist>
