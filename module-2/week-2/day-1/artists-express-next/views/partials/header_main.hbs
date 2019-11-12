@@ -2,16 +2,18 @@
   <nav id="nav_main" class="nav">
     <a class="link" href="/home">home |</a>
     <a class="link" href="/all-artists">all artists |</a>
-    <a class="link" href="/all-albums">all albums |</a>
-    <a class="link" href="/admin">admin |</a>
+    <a class="link" href="/all-albums">all albums |&nbsp;</a>
     {{#unless isLoggedIn}}
     <a class="link" href="/signin">signin |</a>
     {{/unless}}
     {{#if isLoggedIn}}
-    <a class="link" href="/logout">logout |</a>
+    <span>
+      <a class="link" href="/admin"><i class="fa-lg far fa-user-circle"></i> |</a>
+      <a class="link" href="/logout"><i class="fa-lg fas fa-sign-out-alt"></i></a>
+    </span>
     {{/if}}
   </nav>
   {{#if isAdmin}}
-    {{> nav_admin}}
+  {{> nav_admin}}
   {{/if}}
 </header>
