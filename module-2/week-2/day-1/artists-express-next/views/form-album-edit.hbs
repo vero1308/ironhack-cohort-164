@@ -9,7 +9,13 @@
 
     <datalist id="artists">
         {{#each artists}}
-        <option value="{{this._id}}" {{ternary }}>{{this.name}}</option>
+        {{../album.artist._id}}
+        {{#compare this._id ../album.artist._id operator="===" }}
+        <option value="{{this._id}}" selected class="cool">{{this.name}}</option>
+        {{/compare }}
+        {{#compare this._id ../album.artist._id operator="!=" }}
+        <option value="{{this._id}}" class="pas cool">{{this.name}}</option>
+        {{/compare }}
         {{/each}}
     </datalist>
 
@@ -19,6 +25,6 @@
         <img class="cover" src="{{album.cover}}" alt="">
     </div>
     <label for="releaseDate">releaseDate</label>
-    <input class="input" id="releaseDate" name="releaseDate" type="date" value="{{album.releaseDate}}">
+    <input class="input" id="releaseDate" name="releaseDate" type="date" value="{{format-date album.releaseDate ''}}">
     <button class="btn">edit !</button>
 </form>
