@@ -51,7 +51,7 @@ a {
 }
 
 #footer_main {
-  bottom: 0;
+  bottom: -1px;
   /* uncomment for allwas sticky footer  */
   height: 30px;
   font-size: 0.8rem;
@@ -185,6 +185,11 @@ a {
   align-items: center;
   max-width: 200px;
   cursor: pointer;
+  outline: none;
+}
+
+.btn {
+  outline: none;
 }
 
 .form .btn:hover {
