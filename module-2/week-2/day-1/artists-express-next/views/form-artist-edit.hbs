@@ -16,6 +16,8 @@
             <input type="radio" name="isBand" id="no" value="0" {{ ternary artist.isBand null "checked"  }}>
         </div>
     </div>
+    <label for="description">Description</label>
+    <textarea name="description" id="description" cols="30" rows="5">{{artist.description}}</textarea>
     <label for="style">Style</label>
     <select name="style" id="style" class="input">
     {{#each styles}}
