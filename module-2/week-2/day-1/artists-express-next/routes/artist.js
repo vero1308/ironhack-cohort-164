@@ -41,7 +41,8 @@ router.post("/create-artist", protectAdminRoute, (req, res) => {
   const newArtist = {
     name: req.body.name,
     style: req.body.style,
-    isBand: Boolean(Number(req.body.isBand))
+    isBand: Boolean(Number(req.body.isBand)),
+    description: req.body.description,
   };
 
   artistModel
@@ -84,7 +85,8 @@ router.post("/edit-artist/:id", protectAdminRoute, (req, res) => {
   const updatedArtist = {
     name: req.body.name,
     style: req.body.style,
-    isBand: Boolean(Number(req.body.isBand))
+    isBand: Boolean(Number(req.body.isBand)),
+    description: req.body.description
   };
 
   artistModel
