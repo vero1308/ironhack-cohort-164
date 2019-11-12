@@ -6,7 +6,6 @@ const express = require("express");
 const router = new express.Router();
 const albumModel = require("./../models/Album");
 const artistModel = require("./../models/Artist");
-const formatDate = require("./../utils/date-format");
 const protectAdminRoute = require("./../middlewares/protectAdminRoute");
 
 // PUBLIC ROUTES
@@ -38,7 +37,7 @@ router.get("/album/:id", (req, res) => {
       // if successfull, it's an objet representing an albums
       console.log("found album =>", dbRes);
       res.render("album", {
-        album: formatDate(dbRes, "releaseDate", "YYYY"),
+        album: dbRes,
         css: ["album"]
       });
     })
@@ -64,14 +63,14 @@ router.get("/edit-album/:id", protectAdminRoute, (req, res) => {
   albumModel
     .findOne({ _id: { $eq: req.params.id } }) // this will fetch one album by id from db
     .populate("artist")
-    .then(dbRes => {
+    .then(album => {
       // if successfull, dbRes is an objet representing the album fetched by id
       artistModel
       .find()
       .then(artists => {
         // if successfull, artists is an objet representing an albums
         res.render("form-album-edit", {
-          album: formatDate(dbRes, "releaseDate"),
+          album,
           artists,
           css: ["album"]
         });
@@ -86,8 +85,6 @@ router.get("/manage-albums", protectAdminRoute, (req, res) => {
     .find()
     .populate("artist")
     .then(dbRes => {
-      // const dateFormated = dbRes.map(album => formatDate(album, "releaseDate"));
-
       res.render("manage-albums", { albums: dbRes, css: ["tabler"] });
     })
     .catch(dbErr => console.log("err", dbErr));
@@ -117,7 +114,7 @@ router.post("/create-album", protectAdminRoute, (req, res) => {
 router.post("/edit-album/:id", protectAdminRoute, (req, res) => {
   albumModel
     .findByIdAndUpdate(req.params.id, req.body)
-    .then(dbRes => res.redirect("/all-albums"))
+    .then(dbRes => res.redirect("/manage-albums"))
     .catch(dbErr => console.log("err", dbErr));
 });
 
