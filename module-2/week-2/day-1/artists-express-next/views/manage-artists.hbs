@@ -19,7 +19,9 @@
 
         {{#each artists}}
         <tr>
-            <td>{{this.name}}</td>
+            <td>
+                <a class="link" href="/artist/{{this._id}}">{{this.name}}</a>
+            </td>
             <td>
                 <a href="{{this.style.wikiURL}}" target="_blank">
                     {{this.style.name}}
