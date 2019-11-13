@@ -1,11 +1,20 @@
 <h1 class="title">All albums</h1>
-{{!-- <pre>{{albums}}</pre> --}}
+
+<hr>
+<div class="filter widgets">
+    <label class="is-clickable" for="filter_band_only">sort by relasse date</label>
+    <div class="widget-sort">
+        <i id="sort_date_asc" class="fas fa-sort-up"></i>
+        <i id="sort_date_desc" class="fas fa-sort-down"></i>
+    </div>
+</div>
+<hr>
+
 <ul class="list albums">
     {{#each albums}}
     <li class="album shadow-box">
         <a class="link is-clickable" href="/album/{{this._id}}">
-            <div class="color-code" 
-            style="background: {{color-cat this.artist.style.name}}">
+            <div class="color-code" style="background: {{color-cat this.artist.style.name}}">
             </div>
             <h2 class="title">{{ this.artist.name }}&nbsp;</h2>
             <img class="cover" src="{{this.cover}}" alt="cover {{ this.title }}">
@@ -14,6 +23,3 @@
     </li>
     {{/each}}
 </ul>
-
-{{!-- line below is experimental --}}
-{{!-- {{> list albums}} --}}
