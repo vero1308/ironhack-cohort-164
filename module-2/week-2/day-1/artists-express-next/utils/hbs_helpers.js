@@ -72,8 +72,8 @@ hbs.registerHelper("color-cat", genre => {
     jazz: "#c908c9", // purple
     rap: "#1616e4", // navy blue
     techno: "orange",
-    electro: "darkyellow",
-    default: "chartreuse"
+    electro: "#BADA55",
+    default: "#101"
   };
   return colors[genre] || colors["default"];
 });
