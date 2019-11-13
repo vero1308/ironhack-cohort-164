@@ -6,6 +6,7 @@ const express = require("express");
 const router = new express.Router();
 const albumModel = require("./../models/Album");
 const artistModel = require("./../models/Artist");
+const labelModel = require("./../models/Label");
 const protectAdminRoute = require("./../middlewares/protectAdminRoute");
 
 // PUBLIC ROUTES
@@ -30,6 +31,7 @@ router.get("/album/:id", (req, res) => {
   albumModel
     .findOne({ _id: { $eq: req.params.id } })
     .populate("artist")
+    .populate("label")
     .then(dbRes => {
       res.render("album", {
         album: dbRes,
@@ -40,30 +42,31 @@ router.get("/album/:id", (req, res) => {
 });
 
 // BACKEND ROUTES
-router.get("/create-album", protectAdminRoute, (req, res) => {
-  artistModel
-    .find()
+router.get("/create-album", protectAdminRoute, async (req, res) => {
+  Promise.all([artistModel.find(), labelModel.find()])
     .then(dbRes => {
-      res.render("forms/album", { artists: dbRes });
+      console.log(dbRes);
+      res.render("forms/album", { artists: dbRes[0], labels: dbRes[1] });
     })
     .catch(dbErr => console.error(dbErr));
 });
 
-router.get("/edit-album/:id", protectAdminRoute, (req, res) => {
-  albumModel
-    .findOne({ _id: { $eq: req.params.id } }) // this will fetch one album by id from db
-    .populate("artist")
-    .then(album => {
-      artistModel.find().then(artists => {
-        res.render("form-album-edit", {
-          album,
-          artists,
-          css: ["album"]
-        });
-      });
-    })
-    .catch(dbErr => console.log("err", dbErr)); // catched if an error occured );
+router.get("/edit-album/:id", protectAdminRoute, async (req, res) => {
+  Promise.all([
+    albumModel.findOne({ _id: { $eq: req.params.id } }).populate("artist"),
+    labelModel.find(),
+    artistModel.find()
+  ])
+  .then(dbRes => {
+    res.render("forms/album-edit", {
+      album: dbRes[0],
+      labels: dbRes[1],
+      artists: dbRes[2]
+    });
+  })
+  .catch(dbErr => console.error(dbErr));
 });
+
 
 router.get("/manage-albums", protectAdminRoute, (req, res) => {
   albumModel
@@ -80,7 +83,7 @@ router.get("/delete-album/:id", protectAdminRoute, (req, res) => {
     .findByIdAndDelete(req.params.id)
     .then(dbRes => {
       req.flash("success", "album successfully deleted");
-      res.redirect("/manage-albums")
+      res.redirect("/manage-albums");
     })
     .catch(dbErr => console.log("err", dbErr));
 });
