@@ -4,10 +4,17 @@
 
     <label for="title">title</label>
     <input class="input" id="title" name="title" type="text" required>
+    
     <label for="artist">artist</label>
-
     <select name="artist" id="artist" class="input" required>
         {{#each artists}}
+        <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+    
+    <label for="label">label</label>
+    <select name="label" id="label" class="input" required>
+        {{#each labels}}
         <option value="{{this._id}}">{{this.name}}</option>
         {{/each}}
     </select>
