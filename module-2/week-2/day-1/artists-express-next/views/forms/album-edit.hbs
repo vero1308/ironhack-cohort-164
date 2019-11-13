@@ -5,18 +5,30 @@
     <input class="input" id="title" name="title" type="text" value="{{album.title}}">
     <label for="artist">artist</label>
 
-    <input class="input" id="artist" list="artists" name="artist" value="{{album.artist.id}}"/>
+    <input class="input" id="artist" list="artists" name="artist" value="{{album.artist.id}}" />
 
     <datalist id="artists">
         {{#each artists}}
         {{#compare this.name ../album.artist.name operator="===" }}
-        <option value="{{this._id}}" selected class="cool">{{this.name}}</option>
+        <option value="{{this._id}}" selected>{{this.name}}</option>
         {{/compare }}
         {{#compare this.name ../album.artist.name operator="!=" }}
-        <option value="{{this._id}}" >{{this.name}}</option>
+        <option value="{{this._id}}">{{this.name}}</option>
         {{/compare }}
         {{/each}}
     </datalist>
+
+    <label for="label">label</label>
+    <select name="label" id="label" class="input" required>
+        {{#each labels}}
+        {{#compare this.name ../album.label.name operator="===" }}
+        <option value="{{this._id}}" selected>{{this.name}}</option>
+        {{/compare }}
+        {{#compare this.name ../album.label.name operator="!=" }}
+        <option value="{{this._id}}">{{this.name}}</option>
+        {{/compare }}
+        {{/each}}
+    </select>
 
     <label for="cover">cover</label>
     <input class="input" id="cover" name="cover" type="text" value="{{album.cover}}">
