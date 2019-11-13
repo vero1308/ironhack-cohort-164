@@ -23,28 +23,20 @@ router.get("/all-albums", (req, res) => {
       // if successfull, it's an array of albums
       res.render("albums", { albums: dbRes, css: ["album"] }); // pass the array to the view
     })
-    .catch(dbErr => {
-      // else... catch if an error occured
-      console.log("err", dbErr);
-    });
+    .catch(dbErr => console.error(dbErr));
 });
 
 router.get("/album/:id", (req, res) => {
   albumModel
-    .findOne({ _id: { $eq: req.params.id } }) // this will fetch one album by id from db
+    .findOne({ _id: { $eq: req.params.id } })
     .populate("artist")
     .then(dbRes => {
-      // if successfull, it's an objet representing an albums
-      console.log("found album =>", dbRes);
       res.render("album", {
         album: dbRes,
         css: ["album"]
       });
     })
-    .catch(dbErr => {
-      // if an error occured
-      console.log("err", dbErr);
-    });
+    .catch(dbErr => console.log("err", dbErr));
 });
 
 // BACKEND ROUTES
@@ -52,11 +44,9 @@ router.get("/create-album", protectAdminRoute, (req, res) => {
   artistModel
     .find()
     .then(dbRes => {
-      res.render("form-album", { artists: dbRes });
+      res.render("forms/album", { artists: dbRes });
     })
-    .catch(dbErr => {
-      console.error(dbErr);
-    });
+    .catch(dbErr => console.error(dbErr));
 });
 
 router.get("/edit-album/:id", protectAdminRoute, (req, res) => {
@@ -64,18 +54,13 @@ router.get("/edit-album/:id", protectAdminRoute, (req, res) => {
     .findOne({ _id: { $eq: req.params.id } }) // this will fetch one album by id from db
     .populate("artist")
     .then(album => {
-      // if successfull, dbRes is an objet representing the album fetched by id
-      artistModel
-      .find()
-      .then(artists => {
-        // if successfull, artists is an objet representing an albums
+      artistModel.find().then(artists => {
         res.render("form-album-edit", {
           album,
           artists,
           css: ["album"]
         });
-      })
- 
+      });
     })
     .catch(dbErr => console.log("err", dbErr)); // catched if an error occured );
 });
@@ -85,7 +70,7 @@ router.get("/manage-albums", protectAdminRoute, (req, res) => {
     .find()
     .populate("artist")
     .then(dbRes => {
-      res.render("manage-albums", { albums: dbRes, css: ["tabler"] });
+      res.render("manage/albums", { albums: dbRes, css: ["tabler"] });
     })
     .catch(dbErr => console.log("err", dbErr));
 });
@@ -93,7 +78,10 @@ router.get("/manage-albums", protectAdminRoute, (req, res) => {
 router.get("/delete-album/:id", protectAdminRoute, (req, res) => {
   albumModel
     .findByIdAndDelete(req.params.id)
-    .then(dbRes => res.redirect("/manage-albums"))
+    .then(dbRes => {
+      req.flash("success", "album successfully deleted");
+      res.redirect("/manage-albums")
+    })
     .catch(dbErr => console.log("err", dbErr));
 });
 
@@ -101,20 +89,19 @@ router.post("/create-album", protectAdminRoute, (req, res) => {
   albumModel
     .create(req.body) // use the model and try doc insertion in database
     .then(() => {
-      // if successfull
-      // console.log("res", dbRes); // the created movie
-      res.redirect("/manage-albums"); // redirect ALLWAYS Triggers a GET request
+      req.flash("success", "album successfully created");
+      res.redirect("/manage-albums");
     })
-    .catch(dbErr => {
-      // if an error occured
-      console.log("err", dbErr);
-    });
+    .catch(dbErr => console.error(dbErr));
 });
 
 router.post("/edit-album/:id", protectAdminRoute, (req, res) => {
   albumModel
     .findByIdAndUpdate(req.params.id, req.body)
-    .then(dbRes => res.redirect("/manage-albums"))
+    .then(dbRes => {
+      req.flash("success", "album successfully updated");
+      res.redirect("/manage-albums");
+    })
     .catch(dbErr => console.log("err", dbErr));
 });
 

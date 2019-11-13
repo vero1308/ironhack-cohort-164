@@ -121,8 +121,17 @@ a {
   pointer-events: none;
 }
 
+.is-hidden {
+  display: none;
+}
+
 .is-clickable {
   cursor: pointer;
+}
+
+.toggle-active:active {
+  color: rgba(0, 0, 0, 0.75);
+  opacity: 0.5;
 }
 
 .msg {
@@ -131,6 +140,13 @@ a {
   text-align: center;
   border-radius: 0.3rem;
   margin-bottom: 10px;
+  user-select: none;
+}
+
+#content_main > .msg {
+  position: absolute;
+  right: 20px;
+  top: 80px;
 }
 
 .msg.error {
@@ -229,4 +245,11 @@ a {
 
 #search_results .result:nth-child(even) {
   color: #cbff00;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid;
 }

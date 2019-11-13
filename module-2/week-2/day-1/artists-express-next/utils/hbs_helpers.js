@@ -84,5 +84,5 @@ hbs.registerHelper("format-date", function(date, rule) {
 });
 
 hbs.registerHelper("toto", function(number) {
-  return number === 0 ? "c'est la tête à toto" : "ce n'est pas la tête à toto";
+  return number === 0 ? "la tête à toto" : "pas la tête à toto";
 });

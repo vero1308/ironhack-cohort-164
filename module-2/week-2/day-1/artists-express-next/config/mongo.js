@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
-const dbname = "cohort-164-artists";
-
 // hey express, i would like to use mongoose to get a connection to my mongodb server
 mongoose
-.connect("mongodb://localhost/" + dbname, {
+.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

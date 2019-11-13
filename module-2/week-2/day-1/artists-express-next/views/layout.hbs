@@ -5,18 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Module 2, Day 4 - Express | Mongoose | Relations</title>
+    <title>full-stack express @rtist</title>
     <link rel="stylesheet" href="/css/reset.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     {{#each css}}
     <link rel="stylesheet" href="/css/{{this}}.css">
     {{/each}}
-
-    {{#if axios}}
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    {{/if}}
 
     {{#each js}}
     <script type="module" src="/js/{{this}}.js"></script>
@@ -24,19 +21,17 @@
 </head>
 
 <body>
-    <div>
-        isLoggedIn ? {{isLoggedIn}}
-        admin ? {{isAdmin}}
-    </div>
+
     {{> header_main}}
 
     <main id="content_main">
+        {{> flash_message }}
         {{{body}}}
     </main>
 
     <footer id="footer_main">
-        <span>JS +&nbsp;</span><i class="fa fa-heart"></i>&nbsp;<span>+</span>&nbsp;<i class="fa fa-code"></i>
-        {{toto 0}}
+        <span>JS +&nbsp;</span><i class="fa fa-heart"></i>&nbsp;<span>+</span>&nbsp;<i class="fa fa-code"></i>&nbsp;
+        === {{toto 0}}
     </footer>
 </body>
 

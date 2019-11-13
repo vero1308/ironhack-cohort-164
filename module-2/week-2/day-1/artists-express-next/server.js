@@ -1,5 +1,6 @@
 // initial config
-require("./config/mongo"); // database connection
+require("dotenv").config(); // import all key/value pairs from .env in process.env : really usefull when going online :)
+require("./config/mongo"); // database connection setup
 require("./utils/hbs_helpers"); // custom functions adding usefull features to hbs templates
 
 // dependencies injection
@@ -13,10 +14,12 @@ const session = require("express-session");
 // SERVER CONFIG
 // ------------------------------------------
 const server = express();
-const port = 9090;
 
 // Allow server to parse body from POST Request
 server.use(express.urlencoded({ extended: true }));
+/**
+ *  HEY YOU ! GOOD that you read comments, the line below is MANDATORY :)
+ */
 // Allow server to parse JSON from AJAX Request
 server.use(express.json());
 
@@ -37,7 +40,7 @@ hbs.registerPartials(path.join(__dirname, "views/partials"));
 // the depend on session mechanism
 server.use(
   session({
-    secret: "mySecretShOüldb3H4rD2Craaaäk",
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     resave: true
     // req.session.cookie.expires = new Date(Date.now() + hour)
@@ -45,10 +48,12 @@ server.use(
   })
 );
 
-server.use(flash());
+server.use(flash()); // use the flash messages lib
+// flash messages last for 1 client/server cycle and are then erased from memory
 
+// Custom middle ware
 // every time the server is called through HTTP ...
-// this exposeFlashMessage callback will be executed ....
+// this exposeFlashMessage callback will be executed
 server.use(function exposeFlashMessage(req, res, next) {
   res.locals.success_msg = req.flash("success");
   res.locals.error_msg = req.flash("error");
@@ -60,9 +65,13 @@ server.use(function exposeFlashMessage(req, res, next) {
 // Login
 // ------------------------------------------
 server.use(function checkLoggedIn(req, res, next) {
-  console.log(req.session.currentUser);
-  res.locals.isLoggedIn = Boolean(req.session.currentUser);
-  res.locals.isAdmin = Boolean(req.session.currentUser && req.session.currentUser.role === "admin");
+  // res.locals.currentUser = req.session.currentUser;
+  if (!req.session.currentUser) return next();
+  const copy = JSON.parse(JSON.stringify(req.session.currentUser)); // make a clone of db user
+  delete copy.password; // remove password from clone
+  res.locals.currentUser = copy; // expose to the view template (hbs)
+  res.locals.isLoggedIn = Boolean(copy);
+  res.locals.isAdmin = Boolean(copy.role && copy.role === "admin");
   next();
 });
 
@@ -81,6 +90,6 @@ server.use(styleRouter);
 server.use(albumRouter);
 server.use("/auth", authRouter);
 
-server.listen(port, () => {
-  console.log(`server runs @ : http://localhost:${port}`);
+server.listen(process.env.PORT, () => {
+  console.log(`server runs @ : http://localhost:${process.env.PORT}`);
 });

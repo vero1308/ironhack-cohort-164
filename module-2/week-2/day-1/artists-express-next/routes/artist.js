@@ -15,62 +15,42 @@ router.get("/all-artists", (req, res) => {
     .find()
     .populate("style")
     .then(dbRes => {
-      // console.log(dbRes);
       res.render("artists", {
         artists: dbRes,
-        axios: true,
         js: ["filter-band"],
         css: ["artist"]
       });
     });
 });
 
+/* api */
 router.get("/filtered-artists", (req, res) => {
   const q = req.query.band === "true" ? { isBand: true } : {};
   artistModel
     .find(q)
     .then(dbRes => res.send(dbRes))
-    .catch(dbErr => {
-      console.log(dbErr);
-    });
+    .catch(dbErr => console.log(dbErr));
 });
 
 router.get("/artist/:id", (req, res) => {
-  artistModel
-    .findOne({ _id: req.params.id })
-    .populate("style")
+  const artist = artistModel.findOne({ _id: req.params.id }).populate("style");
+  const albums = albumModel.find({ artist: req.params.id });
+
+  Promise.all([artist, albums])
     .then(dbRes => {
-      albumModel.find({ artist: req.params.id }).then(alRes => {
-        res.render("artist", { artist: dbRes, albums: alRes, css: ["artist"] });
+      res.render("artist", {
+        artist: dbRes[0],
+        albums: dbRes[1],
+        css: ["artist"]
       });
-      console.log(dbRes);
     })
-    .catch(err => console.log(err));
+    .catch(asyncErr => console.log(asyncErr));
 });
-
-// router.get("/artist/:id", (req, res) => {
-//   const artist = artistModel.findOne({ _id: req.params.id }).populate("style");
-
-//   const albums = albumModel.find({ artist: req.params.id });
-
-//   Promise.all([artist, albums])
-//     .then(dbRes => {
-//       console.log(dbRes);
-//       res.render("artist", {
-//         artist: dbRes[0],
-//         albums: dbRes[1],
-//         css: ["artist"]
-//       });
-//     })
-//     .catch(asyncErr => {
-//       console.log(asyncErr);
-//     });
-// });
 
 // BACKEND ROUTES
 router.get("/create-artist", protectAdminRoute, (req, res) => {
   styleModel.find().then(dbRes => {
-    res.render("form-artist", { styles: dbRes });
+    res.render("forms/artist", { styles: dbRes });
   });
 });
 
@@ -84,13 +64,11 @@ router.post("/create-artist", protectAdminRoute, (req, res) => {
 
   artistModel
     .create(newArtist)
-    .then(dbRes => {
+    .then(() => {
       req.flash("success", "artist successfully created");
       res.redirect("/manage-artists");
     })
-    .catch(dbErr => {
-      console.error(dbErr);
-    });
+    .catch(dbErr => console.error(dbErr));
 });
 
 router.get("/manage-artists", protectAdminRoute, (req, res) => {
@@ -98,8 +76,7 @@ router.get("/manage-artists", protectAdminRoute, (req, res) => {
     .find()
     .populate("style")
     .then(dbRes => {
-      // console.log(dbRes);
-      res.render("manage-artists", {
+      res.render("manage/artists", {
         artists: dbRes,
         css: ["artists", "tabler"]
       });
@@ -112,7 +89,7 @@ router.get("/edit-artist/:id", protectAdminRoute, (req, res) => {
     .populate("style")
     .then(dbRes => {
       styleModel.find().then(styles => {
-        res.render("form-artist-edit", {
+        res.render("forms/artist-edit", {
           artist: dbRes,
           styles: styles,
           css: ["artist"]
@@ -123,22 +100,18 @@ router.get("/edit-artist/:id", protectAdminRoute, (req, res) => {
 });
 
 router.post("/edit-artist/:id", protectAdminRoute, (req, res) => {
-  const updatedArtist = {
-    name: req.body.name,
-    style: req.body.style,
-    isBand: Boolean(Number(req.body.isBand)),
-    description: req.body.description
-  };
-
   artistModel
-    .findByIdAndUpdate(req.params.id, updatedArtist)
+    .findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      style: req.body.style,
+      isBand: Boolean(Number(req.body.isBand)),
+      description: req.body.description
+    })
     .then(dbRes => {
       req.flash("success", "artist successfully updated");
       res.redirect("/manage-artists");
     })
-    .catch(dbErr => {
-      console.error(dbErr);
-    });
+    .catch(dbErr => console.error(dbErr));
 });
 
 router.get("/delete-artist/:id", protectAdminRoute, (req, res) => {

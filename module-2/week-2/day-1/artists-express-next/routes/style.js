@@ -48,8 +48,7 @@ router.get("/delete-style/:id", protectAdminRoute, (req, res) => {
 
 router.get("/manage-styles", protectAdminRoute, (req, res) => {
   styleModel.find().then(dbRes => {
-    res.render("manage-styles", {
-      axios: true,
+    res.render("manage/styles", {
       styles: dbRes,
       css: ["tabler"],
       js: ["manage-styles"]
