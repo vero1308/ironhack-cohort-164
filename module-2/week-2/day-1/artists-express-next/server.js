@@ -82,12 +82,14 @@ const baseRouter = require("./routes/base.js");
 const artistRouter = require("./routes/artist.js");
 const styleRouter = require("./routes/style.js");
 const albumRouter = require("./routes/album.js");
+const labelRouter = require("./routes/label.js");
 const authRouter = require("./routes/auth.js");
 
 server.use(baseRouter);
 server.use(artistRouter);
 server.use(styleRouter);
 server.use(albumRouter);
+server.use(labelRouter);
 server.use("/auth", authRouter);
 
 server.listen(process.env.PORT, () => {
