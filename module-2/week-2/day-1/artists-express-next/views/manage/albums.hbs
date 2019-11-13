@@ -22,7 +22,9 @@
         {{!-- <pre>{{this.artist}}</pre> --}}
         
         <tr>
-            <td>{{this.title}}</td>
+            <td>
+                <a class="link" href="/album/{{this._id}}">{{this.title}}</a>
+            </td>
             <td>
                 {{this.artist.name}}
             </td>
