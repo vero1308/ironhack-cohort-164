@@ -84,6 +84,7 @@ const styleRouter = require("./routes/style.js");
 const albumRouter = require("./routes/album.js");
 const labelRouter = require("./routes/label.js");
 const authRouter = require("./routes/auth.js");
+const apiRouter = require("./routes/api.js");
 
 server.use(baseRouter);
 server.use(artistRouter);
@@ -91,6 +92,7 @@ server.use(styleRouter);
 server.use(albumRouter);
 server.use(labelRouter);
 server.use("/auth", authRouter);
+server.use("/api", apiRouter);
 
 server.listen(process.env.PORT, () => {
   console.log(`server runs @ : http://localhost:${process.env.PORT}`);

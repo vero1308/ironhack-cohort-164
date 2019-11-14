@@ -19,6 +19,7 @@ router.post("/create-style", protectAdminRoute, (req, res) => {
   });
 });
 
+/** api */
 router.patch("/edit-style/:id", protectAdminRoute, (req, res) => {
 
   styleModel
@@ -45,6 +46,7 @@ router.get("/delete-style/:id", protectAdminRoute, (req, res) => {
     res.redirect("/manage-styles");
   });
 });
+/** end api */
 
 router.get("/manage-styles", protectAdminRoute, (req, res) => {
   styleModel.find().then(dbRes => {
